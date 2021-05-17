@@ -2,12 +2,17 @@
 Tools to assess the DNS security of web applications.
 ## Background
 ### DNS security of web applications? What?  
-As recently discovered in my diploma thesis, some web applications have a vulnerable DNS name resolution. Functionalities that rely on the DNS can therefore be attacked. This includes sending **e-mails**.  
-If a web application has a "Forgot password?" feature, password reset URLs are most likely sent via **e-mail**. **See the problem?**  
-A successful attack on the DNS name resolution of a web application can therefore lead to the takover of user accounts.  
+The DNS is a central part of many functionalities of a web application. This includes sending **e-mails**. If a web application wants to send an e-mail, the e-mail domain first needs to be resolved to an IP address. This is done via a DNS name resolution.  
+**But what happens, if this DNS name resolution is vulnerable?**  
+In this case, an attacker could manipulate the resolution of the e-mail domain. This furthermore means, that e-mails can be redirected to an attacker e-mail server, instead of the actual e-mail server.  
 This concept is summarized in the following image:  
 ![DNS 5(1)_2](https://user-images.githubusercontent.com/84237895/118402283-8559ac80-b669-11eb-962a-6e96e4e97b4c.jpg)
   
+### An attacker can receive e-mails, so what?
+Among newsletters and account notifications there is one functionality that almost always uses e-mails:  
+The "Forgot password?" feature.  
+A successful attack on the DNS name resolution of a web application can therefore lead to the takover of user accounts.  
+This attack concept is not new and has already been discussed back in 2008 when Dan Kaminsky "broke" the DNS. However, as recently discovered in my diploma thesis, some web applications still have a vulnerable DNS name resolution.  
 Now, to check for vulnerabilities in the DNS name resolution of a webapplication, the **DNS Reset Checker** comes into play.  
   
 *A more in-depth look at the DNS security of web applications and the inner workings of the DNS Reset Checker can be found [here](https://sec-consult.com).*
@@ -34,12 +39,12 @@ To confirm this, the following command can be used:
 ### Server's running, now what?
 With a working analysis server, the below testing procedure can be followed:
 
-1. Register on a web application with an e-mail address of the following format: ```test@VVAAIIIIII.[your domain]``` (e.g. 0100000001.analysis.example)
+1. Register on a web application with an e-mail address of the following format: ```test@VVAAIIIIII.[your domain]``` (e.g. test@0100000001.analysis.example)
     - V: Decimal number for versioning
     - A: Decimal number for the attack requirement to test
     - I: Decimal number for the unique identifier of the web application
 2. On the server use ```sudo ./logs.sh``` to see which attack requirements were already tested
-3. If a specific attack requirement is missing register another user and specify the attack requirement to test (e.g. e.g. 01**02**000001.analysis.example). Goto step 2
+3. If a specific attack requirement is missing register another user and specify the attack requirement to test (e.g. e.g. test@01**02**000001.analysis.example). Goto step 2
 4. Download the file ```data/dns_log.txt```
 5. Fire up the ```log_analyzer.html``` in a browser and select the ```dns_log.txt``` file to start analyzing.
 
