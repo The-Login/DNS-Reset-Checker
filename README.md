@@ -53,8 +53,8 @@ This process is summarized in the below image:
 ### What is actually happening? Why do I have to register? What's the server for?
 
 Let's go to through the testing procedure again:  
-As already described, the whole process starts with a registration. In this case, your special e-mail address (e.g. test@0100000001.analysis.example) is used to register on the web application with identifier "000001". This is done because web applications often send registration e-mails to new users. The  web application sending an e-mail initiates a DNS name resolution to your authoritative name server (analysis server), since you entered your analysis domain as e-mail domain. This DNS name resolution can now be analyzed and actively used to test one or more DNS attack requirements.  
-The server's purpose is, as described, to act as an authoritative analysis server. 
+As already described, the whole process starts with a registration. In this case, your special e-mail address (e.g. test@0100000001.analysis.example) is used to register on the web application with identifier "000001". This is done because web applications often send registration e-mails to new users. The  web application sending an e-mail initiates a DNS name resolution to your authoritative name server (analysis server), since you entered your analysis domain as e-mail domain. This DNS name resolution can now be analyzed and actively used to test one or more DNS attack requirements. This is done via a DNS proxy (dns_proxy.py). The DNS proxy proxies DNS requests to and from the ADNS and can therefore perform the described actions.  
+The server's purpose is therefore, as described, to act as an authoritative analysis server. 
 
 ### How do I know if a web application is vulnerable?
 As just mentioned, the analysis server tests for attack requirements. These are requirements for **DNS attacks**.  
