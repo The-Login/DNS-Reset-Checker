@@ -11,7 +11,7 @@ This concept is summarized in the following image:
 ### An attacker can receive e-mails, so what?
 Among newsletters and account notifications there is another functionality that almost always uses e-mails:  
 The "Forgot password?" feature.  
-A successful attack on the DNS name resolution of a web application can therefore lead to the takover of user accounts.  
+A successful attack on the DNS name resolution of a web application combined with the "Forgot password?" feature can therefore lead to the takover of user accounts.  
 This attack concept is not new and has already been discussed back in 2008 when Dan Kaminsky "broke" the DNS. However, as recently discovered in my diploma thesis, some web applications still have a vulnerable DNS name resolution.  
 Now, to check for vulnerabilities in the DNS name resolution of a webapplication, the **DNS Reset Checker** comes into play.  
   
