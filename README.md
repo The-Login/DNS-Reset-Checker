@@ -28,10 +28,10 @@ The installation requires the following steps to be done:
 1. Set the server as the authoritative DNS server of your domain (use "ns1" and "ns2" as name server names)
 2. Make sure your firewall settings allow DNS traffic to reach the server
 3. On the server: ```git clone https://github.com/The-Login/DNS-Reset-Checker```
-4. On the server: ```sudo ./start.sh [your domain] [server ip address]```
+4. On the server: ```sudo ./start.sh [your domain] [server ip address]``` (e.g. ```sudo ./start.sh analysis.example 203.0.113.37```)
 
 With these steps done, the analysis server should be running on your server and receive DNS queries for the specified domain.  
-To confirm this, the following command can be used:
+To confirm this the following command can be used:
 ```dig @[server ip address] 9900999999.[your domain]```
 
 
@@ -43,7 +43,7 @@ With a working analysis server, the below testing procedure can be followed:
     - A: Decimal number for the attack requirement to test
     - I: Decimal number for the unique identifier of the web application
 2. On the server use ```sudo ./logs.sh``` to see which attack requirements were already tested
-3. If a specific attack requirement is missing register another user and specify the attack requirement to test (e.g. e.g. test@01**02**000001.analysis.example). Goto step 2
+3. If a specific attack requirement is missing register another user and specify the attack requirement to test (e.g. test@01**02**000001.analysis.example). Goto step 2
 4. Download the file ```data/dns_log.txt```
 5. Fire up the ```log_analyzer.html``` in a browser and select the ```dns_log.txt``` file to start analyzing.
 
@@ -62,13 +62,20 @@ If all requirements for a DNS attack are fulfilled, the attack should be practic
 Currently, the DNS Reset Checker can be used to test for 2 DNS attacks:
 - Kaminsky attacks
 - IP fragmentation attacks
-What are their attack requirements, one might ask. Here's a summary:  
 
+What exactly are their attack requirements, one might ask. Here's a summary of some **main** requirements:  
+- Kaminsky attacks:
+    1. Low/No random distribution of source ports
+    2. No usage/enforcement of DNS security features (DNS SEC, DNS cookies, 0x20 encoding, etc.)
+- IP fragmentation attacks:
+    1. The DNS resolver of the web application accepts IP fragmented DNS responses
+    2. No usage/enforcement of DNS security features (DNS SEC, etc.)
+    3. Maximum EDNS buffer size larger than 1232 
 
-As already mentioned, for a more in-depth look at this topic check out [this](https://sec-consult.com) blog post.
+For example, if the DNS name resolution of a web application is vulnerable to Kaminsky attacks, you might see the following scatter plot via the log analyzer:  
+![0000000154_example_IP](https://user-images.githubusercontent.com/84237895/118691325-3fd3e580-b809-11eb-8e6e-ed8c76a84736.png)
 
-Besides
-Furthermore, due to extensibiliy of the analysis server (dns_proxy.py), new checks for attack requirements can be added.
-check attack requirements (mainly kaminsky)
-mention that the server is extensible and other analysis methods can be added to check for further attack requirements.
+The other requirements mentioned can be checked by reading the "General Info" section of the log analyzer output or by analyzing the dns_log.txt log entries directly.
+
+*As already mentioned, for a more in-depth look at this topic check out [this](https://sec-consult.com) blog post.*
 
