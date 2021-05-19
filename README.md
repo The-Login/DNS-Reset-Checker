@@ -6,7 +6,7 @@ The DNS is a central part of many functionalities of a web application. This inc
 **But what happens, if this DNS name resolution is vulnerable?**  
 In this case, an attacker could manipulate the resolution of the e-mail domain. This furthermore means, that e-mails can be redirected to an attacker e-mail server, instead of the actual e-mail server.  
 This concept is summarized in the following image:  
-![DNS 5(1)_2](https://user-images.githubusercontent.com/84237895/118402283-8559ac80-b669-11eb-962a-6e96e4e97b4c.jpg)
+![methodology_english_2](https://user-images.githubusercontent.com/84237895/118851556-2f3b7200-b8d2-11eb-8681-7011e5aacd70.jpg)
   
 ### An attacker can receive e-mails, so what?
 Among newsletters and account notifications there is another functionality that almost always uses e-mails:  
@@ -32,7 +32,8 @@ The installation requires the following steps to be done:
 
 With these steps done, the analysis server should be running on your server and receive DNS queries for the specified domain.  
 To confirm this the following command can be used:
-```dig @[server ip address] 9900999999.[your domain]```
+```dig 9999999999.[your domain]```  
+This should return the IP address of the server.
 
 
 ## Usage
@@ -41,9 +42,9 @@ With a working analysis server, the below testing procedure can be followed:
 1. Register on a web application with an e-mail address of the following format: ```test@VVAAIIIIII.[your domain]``` (e.g. test@0100000001.analysis.example)
     - V: Decimal number for versioning
     - A: Decimal number for the attack requirement to test
-    - I: Decimal number for the unique identifier of the web application
+    - I: Decimal number for the **unique** identifier of the web application (one identifier per web app)
 2. On the server use ```sudo ./logs.sh``` to see which attack requirements were already tested
-3. If a specific attack requirement is missing register another user and specify the attack requirement to test (e.g. test@01**02**000001.analysis.example). Goto step 2
+3. If a specific attack requirement is missing, register another user and specify the attack requirement to test (e.g. test@01**02**000001.analysis.example). Goto step 2
 4. Download the file ```data/dns_log.txt```
 5. Fire up the ```log_analyzer.html``` in a browser and select the ```dns_log.txt``` file to start analyzing.
 
@@ -76,6 +77,7 @@ For example, if the DNS name resolution of a web application is vulnerable to Ka
 ![0000000154_example_IP](https://user-images.githubusercontent.com/84237895/118691325-3fd3e580-b809-11eb-8e6e-ed8c76a84736.png)
 
 The other requirements mentioned can be checked by reading the "General Info" section of the log analyzer output or by analyzing the dns_log.txt log entries directly.
+![general_info](https://user-images.githubusercontent.com/84237895/118853912-92c69f00-b8d4-11eb-88e8-9c9620e44efa.PNG)
 
 *As already mentioned, for a more in-depth look at this topic check out [this](https://sec-consult.com) blog post.*
 
