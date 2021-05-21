@@ -126,7 +126,7 @@ def get_packet_data(pkt):
 
     data = {}
     tmp_dns_data = extract_dns_query_packet_data(pkt)
-    data["raw_packet"] = str(pkt)  # load via (Ether(eval(log_entry["raw_packet"]))) or IP() depending on the lowest layer
+    data["raw_packet"] = str(pkt)
     data["metadata"] = extract_query_packet_data(pkt)
     data["dns_metadata"] = tmp_dns_data
 
@@ -392,7 +392,7 @@ def craft_attack_packet(global_request, global_response):
     elif tmp_type == 1 and analysis_domain in tmp_name and len(set(nameserver_prefixes).intersection(tmp_name.split("."))) > 0:
         return global_response
 
-    # if the attack number 99 is used in the defined format in an A request, this indicates that the response should not be changed (this is used to check for open dns resolvers used by applications)
+    # if the attack number 99 is used in the defined format in an A request, this indicates that the response should not be changed (this can be used for debugging purposes)
     elif tmp_type == 1 and analysis_domain in tmp_name and re.match("^[0-9]{10}$", tmp_application_identifier) != None and int(tmp_application_identifier[2:4], 10) == 99:
         return global_response
 
