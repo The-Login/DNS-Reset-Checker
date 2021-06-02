@@ -12,7 +12,7 @@ This concept is summarized in the following image:
 Among newsletters and account notifications there is another functionality that almost always uses e-mails:  
 The "Forgot password?" feature.  
 A successful attack on the DNS name resolution of a web application combined with the "Forgot password?" feature can therefore lead to the takeover of user accounts.  
-This attack concept is not new and has already been discussed back in 2008 when Dan Kaminsky "broke" the DNS. However, as recently discovered in my diploma thesis, some web applications still have a vulnerable DNS name resolution.  
+This attack vector is not new and has already been discussed back in 2008 when Dan Kaminsky "broke" the DNS. However, as recently discovered in my diploma thesis, some web applications still have a vulnerable DNS name resolution.  
 Now, to check for vulnerabilities in the DNS name resolution of a web application, the **DNS Reset Checker** comes into play.  
   
 *A more in-depth look at the DNS security of web applications and the inner workings of the DNS Reset Checker can be found [here](https://sec-consult.com).*
