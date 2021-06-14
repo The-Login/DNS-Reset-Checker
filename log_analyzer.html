@@ -177,7 +177,6 @@ function get_0x20_encoding_usage(domain) {
 }
 
 function parse_CIDR(CIDR) {
-    //Beginning IP address
     var beg = CIDR.substr(CIDR, CIDR.indexOf("/"));
     var end = beg;
     var off = (1 << (32 - parseInt(CIDR.substr(CIDR.indexOf("/") + 1)))) - 1;
@@ -185,14 +184,9 @@ function parse_CIDR(CIDR) {
         return parseInt(a);
     });
 
-    //An IPv4 address is just an UInt32...
     var buf = new ArrayBuffer(4); //4 octets
     var i32 = new Uint32Array(buf);
-
-    //Get the UInt32, and add the bit difference
     i32[0] = (sub[0] << 24) + (sub[1] << 16) + (sub[2] << 8) + sub[3] + off;
-
-    //Recombine into an IPv4 string:
     var end = Array.apply([], new Uint8Array(buf)).reverse().join(".");
 
     return [beg, end];
@@ -335,7 +329,6 @@ function get_grouped_entries_by_domain(log_data) {
                 continue;
             }
 
-            //use only the domain identifier for grouping (exclude version and attack numbers)
             tmp_domain = /.*([0-9]{10}).*/.exec(tmp_domain)[1].substring(4);
 
             if (!output.hasOwnProperty(tmp_domain)) {
@@ -362,7 +355,6 @@ function get_grouped_entries_by_domain_and_ip(log_data) {
                 continue;
             }
 
-            //use only the domain identifier for grouping (exclude version and attack numbers)
             tmp_domain = /.*([0-9]{10}).*/.exec(tmp_domain)[1].substring(4);
 
             if (!output.hasOwnProperty(tmp_domain)) {
@@ -404,10 +396,14 @@ function print_general_info(analysis) {
     general_info_results_list = document.createElement("ul");
     general_info_results_list.id = domain + "-general-info-results";
 
-    //add 0x20, number of ip addresses used and more
     for (let i = 0; i < general_info_results.length; i++) {
         general_info_result = document.createElement("li");
-        general_info_result.innerHTML = "<b>" + general_info_results[i]["info_name"] + ":</b> " + general_info_results[i]["result"];
+	general_info_result_title = document.createElement("b");
+	general_info_result_title_text = document.createTextNode(general_info_results[i]["info_name"] + ": ");
+	general_info_result_title.appendChild(general_info_result_title_text);
+        general_info_result_text =  document.createTextNode(general_info_results[i]["result"]);
+	general_info_result.appendChild(general_info_result_title);
+	general_info_result.appendChild(general_info_result_text);
         general_info_results_list.appendChild(general_info_result);
     }
 
@@ -454,11 +450,7 @@ function print_source_ports(analysis) {
     source_port_analysis_title.appendChild(source_port_analysis_title_text);
     source_port_analysis.appendChild(source_port_analysis_title);
     analysis.appendChild(source_port_analysis);
-
-    //add graphs to the results
-    //add graph for all IPs
     draw_scatter_plot_source_port(domain, "");
-    //add graph for each IP
     for (let i = 0; i < ips.length; i++) {
         draw_scatter_plot_source_port(domain, ips[i]);
     }
@@ -466,8 +458,6 @@ function print_source_ports(analysis) {
 
 function print_domain(domain) {
     ips = get_ips_by_domain(domain);
-
-    //start new analysis
     analysis = document.createElement("div");
     analysis.id = domain;
     analysis.className = "row border rounded result_entry";
@@ -475,18 +465,10 @@ function print_domain(domain) {
     analysis_title_text = document.createTextNode("Analysis of domain identifier: " + domain);
     analysis_title.appendChild(analysis_title_text);
     analysis.appendChild(analysis_title);
-
-    //General Info
     print_general_info(analysis);
-
-    //IP addresses
     print_ip_addresses(analysis);
-
-    //append analysis to results (plotly can only add graphs to elements that are already in the DOM)
     results = document.getElementById("results");
     results.appendChild(analysis);
-
-    //source port analysis
     print_source_ports(analysis);
 }
 
@@ -497,8 +479,6 @@ function print_results() {
 }
 
 var log_data = [];
-
-//file reader
 document.getElementById("inputfile").addEventListener("change", function () {
     var file_reader = new FileReader();
     file_reader.onload = function () {
@@ -506,7 +486,6 @@ document.getElementById("inputfile").addEventListener("change", function () {
         grouped_entries_by_domain_and_ip = get_grouped_entries_by_domain_and_ip(log_data);
         grouped_entries_by_domain = get_grouped_entries_by_domain(log_data);
         print_results();
-        //document.getElementById("file-upload").setAttribute("hidden","");
     };
 
     file_reader.readAsText(this.files[0]);
