@@ -2,70 +2,12 @@
 <html>
     <head>
         <title>DNS Reset Checker | Log Analyzer</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
         <script src="https://cdn.plot.ly/plotly-latest.min.js" charset="utf-8"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<style>.files input{outline:4px dashed #000;outline-offset:-10px;-webkit-transition:outline-offset .15s ease-in-out,background-color .15s linear;transition:outline-offset .15s ease-in-out,background-color .15s linear;padding:120px 0 85px 35%;text-align:center!important;margin:0;width:100%!important}.files input:focus{outline:4px dashed #000;outline-offset:-10px;-webkit-transition:outline-offset .15s ease-in-out,background-color .15s linear;transition:outline-offset .15s ease-in-out,background-color .15s linear;border:1px solid #000}.files{position:relative}.files:after{pointer-events:none;position:absolute;top:60px;left:0;width:50px;right:0;height:56px;content:"";background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAA3NCSVQICAjb4U/gAAAACXBIWXMAACp5AAAqeQFmoi32AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAPBQTFRF////HiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdHiAdn+sWnAAAAE90Uk5TAAECAwQICgsWGBodKSwyMzY4P0FERktOT1FXWVtcXV5fYGFiY2RlZmdobnJ2eHp+ho6ot7i/xMbIyszNzs/X2dze4OPp6/Dx8/T1+vz9/gveScgAAAIPSURBVHja7dtZU8IwFIbh476vuIuIogju+y4KLqBC8///jdBWKCWJNmmIznzngl50wvsM0GHaaYn++YyNWc1P3DN2N26vP1Rk9XkcsAZYYu7MWQPse4Ada4ADD5AHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATDYWHirXs6qAxE3ldl6z3wjUNtUAmVp9p5PQAjwwmUAOyDju3gstQIXJBFKA32fPWoBr5gs2ogK2/D471wLM1mQCCaDZr07r/Qq/P0iuQAxo9ZO6x6FMIATE2A8K0r8FbMfZlwkEgGa/FktfIuADWv01IrMCLiAbfz8oWP8JYKQvEnAAhvoCQSeg1U8RmRKkxIAdc32uIAww2ucJQgDDfY6gHZAz3Q8K1joBOf6halQQBHSlHxYEAF3qBwXJICDfrX67oAnIi/+yfzF9o2qCavIboNjvGe2tv/YevbOXtJrgytteqvWzr6y83+PfFbmoJAhNtP6yu2aXntztGekLIn7/Z+6iAnnvVSRtAf/UQTzuHbnMIW91iXQFUftU8tYpAjoEkfu6gJAgel8b0CYQnsCbBAQEKv0YAE2BUj8OgC9Q68cCoNUyY2+rZA9AIysrw2QToDEAAAAAAAAAAAAAAPwxwMdp1+ejDWBv7AMcu33Hv0RjbQp0aBewR/0nVXv5z+PGlcLBqRlLM2nvofHWfAEs4xVXJqAXbAAAAABJRU5ErkJggg==);display:block;margin:0 auto;background-size:100%;background-repeat:no-repeat}.color input{background-color:#f1f1f1}.files:before{position:absolute;bottom:10px;left:0;pointer-events:none;width:100%;right:0;height:57px;content:'  drop "dns_log.txt" here  ';display:block;margin:0 auto;color:#000;font-weight:600;text-align:center}.result_entry{border:7px solid #000!important;margin:7px!important;margin-top:5px;}</style>
+	    
     </head>
-    <style>
-        .files input {
-            outline: 4px dashed #000000;
-            outline-offset: -10px;
-            -webkit-transition: outline-offset 0.15s ease-in-out, background-color 0.15s linear;
-            transition: outline-offset 0.15s ease-in-out, background-color 0.15s linear;
-            padding: 120px 0px 85px 35%;
-            text-align: center !important;
-            margin: 0;
-            width: 100% !important;
-        }
-        .files input:focus {
-            outline: 4px dashed #000000;
-            outline-offset: -10px;
-            -webkit-transition: outline-offset 0.15s ease-in-out, background-color 0.15s linear;
-            transition: outline-offset 0.15s ease-in-out, background-color 0.15s linear;
-            border: 1px solid #000000;
-        }
-        .files {
-            position: relative;
-        }
-        .files:after {
-            pointer-events: none;
-            position: absolute;
-            top: 60px;
-            left: 0;
-            width: 50px;
-            right: 0;
-            height: 56px;
-            content: "";
-            background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
-            display: block;
-            margin: 0 auto;
-            background-size: 100%;
-            background-repeat: no-repeat;
-        }
-        .color input {
-            background-color: #f1f1f1;
-        }
-        .files:before {
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            pointer-events: none;
-            width: 100%;
-            right: 0;
-            height: 57px;
-            content: '  drop "dns_log.txt" here  ';
-            display: block;
-            margin: 0 auto;
-            color: #000000;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .result_entry {
-            border: 7px solid #000000 !important;
-            margin: 7px !important;
-        }
-    </style>
 
     <body>
         <h1 class="font-weight-bold text-center" style="font-weight: bold; color: #000000">DNS Reset Checker | Log Analyzer</h1>
@@ -76,7 +18,7 @@
         <div id="results" class="container-fluid"></div>
 	</body>
 
-<script type="text/javascript">
+<script>
 
 var grouped_entries_by_domain_and_ip;
 var grouped_entries_by_domain;
