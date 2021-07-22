@@ -15,7 +15,7 @@ A successful attack on the DNS name resolution of a web application combined wit
 This attack vector is not new and has already been discussed back in 2008 when Dan Kaminsky "broke" the DNS. However, as recently discovered in my diploma thesis, some web applications still have a vulnerable DNS name resolution.  
 Now, to check for vulnerabilities in the DNS name resolution of a web application, the **DNS Reset Checker** comes into play.  
   
-*A more in-depth look at the DNS security of web applications and the inner workings of the DNS Reset Checker can be found [here](https://sec-consult.com).*
+*A more in-depth look at the DNS security of web applications and the inner workings of the DNS Reset Checker can be found [here](https://sec-consult.com/blog/detail/forgot-password-taking-over-user-accounts-kaminsky-style/).*
 ## Requirements and Installation
 For a complete setup of the DNS Reset Checker the following components are required:
 * A server (e.g. AWS EC2)
@@ -79,5 +79,5 @@ For example, if the DNS name resolution of a web application is vulnerable to Ka
 The other requirements mentioned can be checked by reading the "General Info" section of the log analyzer output or by analyzing the dns_log.txt log entries directly.
 ![general_info](https://user-images.githubusercontent.com/84237895/118853912-92c69f00-b8d4-11eb-88e8-9c9620e44efa.PNG)
 
-*As already mentioned, for a more in-depth look at this topic check out [this](https://sec-consult.com) blog post.*
+*As already mentioned, for a more in-depth look at this topic check out [this](https://sec-consult.com/blog/detail/forgot-password-taking-over-user-accounts-kaminsky-style/) blog post.*
 
