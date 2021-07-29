@@ -48,7 +48,7 @@ With a working analysis server, the below testing procedure can be followed:
 4. Download the file ```data/dns_log.txt```
 5. Fire up the ```log_analyzer.html``` in a browser and select the ```dns_log.txt``` file to start analyzing.
 
-This process is summarized in the below image:
+This process is summarized in the image below:
 ![Blog Post (2)](https://user-images.githubusercontent.com/84237895/118402797-d074bf00-b66b-11eb-8d30-c39f43808e6c.png)
   
 ### What is actually happening? Why do I have to register? What's the server for?
