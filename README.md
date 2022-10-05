@@ -1,3 +1,4 @@
+***The DNS Reset Checker is deprecated and replaced by the [DNS Analysis Server](https://github.com/The-Login/DNS-Analysis-Server)!***
 # DNS Reset Checker
 Tools to assess the DNS security of web applications.
 ## Background
